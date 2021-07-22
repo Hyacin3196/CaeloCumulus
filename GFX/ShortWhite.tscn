@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://GFX/white.png" type="Texture" id=1]
+
+[node name="ShortWhite" type="Sprite3D"]
+transform = Transform( 20, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+opacity = 0.5
+texture = ExtResource( 1 )

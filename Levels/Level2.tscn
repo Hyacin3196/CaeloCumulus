@@ -1,0 +1,219 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://NPC/Asteroid.tscn" type="PackedScene" id=1]
+[ext_resource path="res://GUI/PauseMenu.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Player/RigidBodyPlayer.tscn" type="PackedScene" id=3]
+[ext_resource path="res://GUI/GUI.tscn" type="PackedScene" id=4]
+
+[node name="Level2" type="Spatial"]
+
+[node name="GUI" parent="." instance=ExtResource( 4 )]
+
+[node name="Pause" parent="." instance=ExtResource( 2 )]
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.34202, 0.939693, 0, -0.939693, 0.34202, 0, 120, 20 )
+near = 100.0
+far = 500.0
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+
+[node name="Obstacles" type="Spatial" parent="."]
+
+[node name="Asteroid" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -95.4027, 0, -63.7118 )
+
+[node name="Asteroid2" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -102.972, 0, -63.013 )
+
+[node name="Asteroid3" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -110.766, 0, -59.2714 )
+
+[node name="Asteroid4" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -120.972, 0, -76.013 )
+
+[node name="Asteroid30" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -101.972, 0, -56.013 )
+
+[node name="Asteroid31" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -107.972, 0, -51.013 )
+
+[node name="Asteroid32" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -106.972, 0, -46.013 )
+
+[node name="Asteroid33" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -100.972, 0, -46.013 )
+
+[node name="Asteroid34" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -88.9719, 0, -51.013 )
+
+[node name="Asteroid35" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -77.9719, 0, -56.013 )
+
+[node name="Asteroid36" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -71.9719, 0, -66.013 )
+
+[node name="Asteroid37" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -72.9719, 0, -76.013 )
+
+[node name="Asteroid38" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -77.9719, 0, -83.013 )
+
+[node name="Asteroid39" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -91.9719, 0, -87.013 )
+
+[node name="Asteroid40" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -93.9719, 0, -105.013 )
+
+[node name="Asteroid41" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -113.972, 0, -104.013 )
+
+[node name="Asteroid42" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -127.972, 0, -86.013 )
+
+[node name="Asteroid43" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -134.972, 0, -67.013 )
+
+[node name="Asteroid44" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -130.972, 0, -50.013 )
+
+[node name="Asteroid45" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -119.972, 0, -38.013 )
+
+[node name="Asteroid46" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -100.972, 0, -33.013 )
+
+[node name="Asteroid47" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -78.9719, 0, -35.013 )
+
+[node name="Asteroid48" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60.9719, 0, -48.013 )
+
+[node name="Asteroid49" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -53.9719, 0, -66.013 )
+
+[node name="Asteroid50" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -54.9719, 0, -83.013 )
+
+[node name="Asteroid51" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -61.9719, 0, -101.013 )
+
+[node name="Asteroid52" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -79.9719, 0, -123.013 )
+
+[node name="Asteroid53" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -115.972, 0, -136.013 )
+
+[node name="Asteroid54" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -157.972, 0, -113.013 )
+
+[node name="Asteroid55" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -169.972, 0, -85.013 )
+
+[node name="Asteroid220" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -127.972, 0, -151.013 )
+
+[node name="Asteroid221" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -117.972, 0, -161.013 )
+
+[node name="Asteroid222" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -118.972, 0, -169.013 )
+
+[node name="Asteroid223" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -126.972, 0, -160.013 )
+
+[node name="Asteroid224" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -137.972, 0, -148.013 )
+
+[node name="Asteroid225" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -148.972, 0, -153.013 )
+
+[node name="Asteroid226" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -156.972, 0, -167.013 )
+
+[node name="Asteroid227" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -165.972, 0, -158.013 )
+
+[node name="Asteroid228" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -170.972, 0, -149.013 )
+
+[node name="Asteroid229" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -171.972, 0, -136.013 )
+
+[node name="Asteroid230" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -165.972, 0, -122.013 )
+
+[node name="Asteroid231" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -162.972, 0, -110.013 )
+
+[node name="Asteroid265" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -185.972, 0, -99.013 )
+
+[node name="Asteroid266" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -193.972, 0, -108.013 )
+
+[node name="Asteroid267" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -197.972, 0, -124.013 )
+
+[node name="Asteroid268" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -198.972, 0, -141.013 )
+
+[node name="Asteroid269" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -202.972, 0, -150.013 )
+
+[node name="Asteroid270" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -215.972, 0, -147.013 )
+
+[node name="Asteroid271" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -211.972, 0, -126.013 )
+
+[node name="Asteroid272" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -198.972, 0, -100.013 )
+
+[node name="Asteroid273" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -191.972, 0, -83.013 )
+
+[node name="Asteroid274" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -186.972, 0, -68.013 )
+
+[node name="Asteroid275" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -182.972, 0, -60.013 )
+
+[node name="Asteroid276" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -175.972, 0, -54.013 )
+
+[node name="Asteroid277" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -172.972, 0, -46.013 )
+
+[node name="Asteroid278" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -171.972, 0, -41.013 )
+
+[node name="Asteroid279" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -170.972, 0, -39.013 )
+
+[node name="Asteroid280" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -160.972, 0, -30.013 )
+
+[node name="Asteroid281" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -154.972, 0, -28.013 )
+
+[node name="Asteroid282" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -156.972, 0, -37.013 )
+
+[node name="Asteroid283" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -145.972, 0, -32.013 )
+
+[node name="Asteroid284" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -136.972, 0, -43.013 )
+
+[node name="Asteroid285" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -115.972, 0, -35.013 )
+
+[node name="Asteroid286" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -92.9719, 0, -42.013 )
+
+[node name="Asteroid287" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -66.9719, 0, -60.013 )
+
+[node name="Asteroid288" parent="Obstacles" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -66.9719, 0, -60.013 )
