@@ -22,8 +22,9 @@ var bullet_delay = BULLET_SHOOT_INTERVAL
 var is_spiralling = false
 var spiral_camera_intensity = 0.005
 
-var angular_smoothing = 0.7
+const ANGULAR_SPEED_MULTIPLIER = 5
 var angular_speed = 0
+var angular_smoothing = 0.7
 var old_angular_speed = 0
 var camera_height = 150
 var camera_distance = 20
@@ -36,16 +37,19 @@ func _ready():
 	camera_distance = _camera.transform.origin.z
 
 func _process(delta):
+	#Get the difference between the angle in degrees, then convert into radians
 	var angular_diff = rotation_degrees.y- _camera.rotation_degrees.y
 	angular_diff = fmod(angular_diff + 180,360)  - 180
 	angular_diff = angular_diff/180 * PI
 
+	#Make sure the new difference is within workable values
 	if angular_diff > PI:
 		angular_diff -= 2*PI
 	elif angular_diff < -PI:
 		angular_diff += 2*PI
 
-	angular_speed = angular_diff * delta * 5
+	
+	angular_speed = angular_diff * delta * ANGULAR_SPEED_MULTIPLIER
 	angular_speed = (angular_speed * (1 - angular_smoothing)) + (old_angular_speed * angular_smoothing)
 	if not is_spiralling:
 		_camera.rotation.y += angular_speed
