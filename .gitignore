@@ -7,4 +7,8 @@ bin/
 build/
 lib/
 
+# Reproducible project files for Godot Mono
+*.csproj
+*.sln
+
 export_presets.cfg
