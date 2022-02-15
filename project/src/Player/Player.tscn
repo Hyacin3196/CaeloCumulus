@@ -1,0 +1,101 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://project/src/Weapons/Turret.tscn" type="PackedScene" id=1]
+[ext_resource path="res://project/src/Weapons/OmniTurret.tscn" type="PackedScene" id=2]
+[ext_resource path="res://project/src/Misc/SpeedTrail.tscn" type="PackedScene" id=3]
+[ext_resource path="res://project/assets/materials/PlayerMaterial.tres" type="Material" id=4]
+[ext_resource path="res://project/src/Player/Player.gd" type="Script" id=5]
+[ext_resource path="res://project/src/Weapons/LaserStreamOmniTurret.tscn" type="PackedScene" id=6]
+
+[sub_resource type="ConvexPolygonShape" id=3]
+points = PoolVector3Array( 0, 0.325, -1.5, 0, -0.325, -1.5, 1, 0.325, 1, 1, -0.325, 1, -1, 0.325, 1, -1, -0.325, 1 )
+
+[sub_resource type="PrismMesh" id=2]
+material = ExtResource( 4 )
+
+[node name="Player" type="RigidBody"]
+collision_mask = 18
+continuous_cd = true
+contacts_reported = 1
+contact_monitor = true
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+script = ExtResource( 5 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 0.75, 0, 0, 0, 1, 0, 0, 0, 0.75, 0, 0, 0 )
+shape = SubResource( 3 )
+
+[node name="Weapons" type="Spatial" parent="."]
+
+[node name="Turret" parent="Weapons" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1 )
+_shot_interval = 0.1
+_bullet_speed_max = 125.0
+_bullet_speed_min = 100.0
+_bullet_range = 250.0
+_bullet_spread = 0.1
+_collision_layer = 4
+_collision_mask = 14
+
+[node name="Turret2" parent="Weapons" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1 )
+_shot_interval = 0.1
+_bullet_speed_max = 125.0
+_bullet_speed_min = 100.0
+_bullet_range = 250.0
+_bullet_spread = 0.1
+_collision_layer = 4
+_collision_mask = 14
+
+[node name="OmniTurret" parent="Weapons" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.00679, 1.19209e-07, 0.994589 )
+_active = false
+_shot_interval = 0.4
+_bullet_speed_max = 350.0
+_bullet_speed_min = 350.0
+_bullet_range = 400.0
+_bullet_spread = 0.005
+_bullet_mass = 0.1
+_collision_layer = 4
+_collision_mask = 14
+
+[node name="OmniTurret2" parent="Weapons" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1 )
+_active = false
+_shot_interval = 0.4
+_bullet_speed_max = 350.0
+_bullet_speed_min = 350.0
+_bullet_range = 400.0
+_bullet_spread = 0.005
+_bullet_mass = 0.1
+_collision_layer = 4
+_collision_mask = 14
+
+[node name="LaserStreamOmniTurret" parent="Weapons" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2 )
+_color = Color( 0, 1, 0, 1 )
+_bullet_speed_max = 150.0
+_bullet_speed_min = 150.0
+_bullet_range = 300.0
+_bullet_spread = 0.0
+_max_rot_speed = 3.142
+
+[node name="Body" type="Spatial" parent="."]
+
+[node name="MeshInstance" type="MeshInstance" parent="Body"]
+transform = Transform( 1, 0, 0, 0, -5.46392e-08, 0.325, 0, -1.25, -1.42062e-08, 0, 0, -0.275 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="SpeedTrail" parent="." instance=ExtResource( 3 )]
+_hue1 = 0.0
+_val1 = 0.125
+_alph1 = 0.5
+_hue2 = 1.0
+_val2 = 0.125
+_alph2 = 0.5
+
+[connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]

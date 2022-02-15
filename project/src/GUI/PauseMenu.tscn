@@ -1,0 +1,101 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://project/src/GUI/PausePopup.gd" type="Script" id=1]
+[ext_resource path="res://project/assets/fonts/AnonymousPro-Regular.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=2]
+size = 50
+font_data = ExtResource( 2 )
+
+[node name="PauseMenu" type="CanvasLayer"]
+
+[node name="PausePopup" type="Popup" parent="."]
+pause_mode = 2
+visible = true
+margin_right = 40.0
+margin_bottom = 40.0
+popup_exclusive = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="PausePopup"]
+margin_left = 700.0
+margin_top = 350.0
+margin_right = 1200.0
+margin_bottom = 750.0
+color = Color( 1, 1, 1, 0.337255 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Continue" type="ColorRect" parent="PausePopup/ColorRect"]
+margin_left = 30.0
+margin_top = 30.0
+margin_right = 470.0
+margin_bottom = 120.0
+color = Color( 0.0509804, 0.0980392, 0.282353, 0.615686 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Continue" type="Label" parent="PausePopup/ColorRect/Continue"]
+margin_right = 440.0
+margin_bottom = 90.0
+custom_fonts/font = SubResource( 2 )
+text = "Continue"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Restart" type="ColorRect" parent="PausePopup/ColorRect"]
+margin_left = 30.0
+margin_top = 150.0
+margin_right = 470.0
+margin_bottom = 250.0
+color = Color( 0.0509804, 0.0980392, 0.282353, 0.615686 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Restart" type="Label" parent="PausePopup/ColorRect/Restart"]
+margin_right = 440.0
+margin_bottom = 90.0
+custom_fonts/font = SubResource( 2 )
+text = "Restart"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit" type="ColorRect" parent="PausePopup/ColorRect"]
+margin_left = 30.0
+margin_top = 280.0
+margin_right = 470.0
+margin_bottom = 370.0
+color = Color( 0.0509804, 0.0980392, 0.282353, 0.615686 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit" type="Label" parent="PausePopup/ColorRect/Quit"]
+margin_right = 440.0
+margin_bottom = 90.0
+custom_fonts/font = SubResource( 2 )
+text = "Quit"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="mouse_entered" from="PausePopup/ColorRect/Continue" to="PausePopup" method="_on_Continue_mouse_entered"]
+[connection signal="mouse_exited" from="PausePopup/ColorRect/Continue" to="PausePopup" method="_on_Continue_mouse_exited"]
+[connection signal="mouse_entered" from="PausePopup/ColorRect/Restart" to="PausePopup" method="_on_Restart_mouse_entered"]
+[connection signal="mouse_exited" from="PausePopup/ColorRect/Restart" to="PausePopup" method="_on_Restart_mouse_exited"]
+[connection signal="mouse_entered" from="PausePopup/ColorRect/Quit" to="PausePopup" method="_on_Quit_mouse_entered"]
+[connection signal="mouse_exited" from="PausePopup/ColorRect/Quit" to="PausePopup" method="_on_Quit_mouse_exited"]

@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://GFX/Meshes/Cursor_Mesh.tres" type="PrismMesh" id=1]
+[ext_resource path="res://Models/CursorPointer.tscn" type="PackedScene" id=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Spatial
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+var RADIANS_PER_SECOND = PI * 1
+onready var _player = get_node(\"../Player\")
+onready var _camera2 = get_node(\"../ViewportContainer/Viewport/Camera\")
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	self.rotation.y += RADIANS_PER_SECOND * delta
+	var pos = self.translation
+	if _camera2 != null:
+		_camera2.translation = Vector3(pos.x, pos.y + 40, pos.z)
+	pass
+"
+
+[node name="Cursor" type="Spatial"]
+script = SubResource( 1 )
+
+[node name="MeshInstance" parent="." instance=ExtResource( 2 )]
+mesh = ExtResource( 1 )
+
+[node name="MeshInstance2" parent="." instance=ExtResource( 2 )]
+transform = Transform( -0.25, -0.433013, -9.46379e-09, 0, -2.18557e-08, 0.25, -0.433013, 0.25, 5.46392e-09, 0.866, 0, -0.5 )
+mesh = ExtResource( 1 )
+
+[node name="MeshInstance3" parent="." instance=ExtResource( 2 )]
+transform = Transform( -0.25, 0.433013, 9.46379e-09, 0, -2.18557e-08, 0.25, 0.433013, 0.25, 5.46392e-09, -0.866, 0, -0.5 )
+mesh = ExtResource( 1 )
+
+[node name="OmniLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0 )
+visible = false
+light_energy = 2.0

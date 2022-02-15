@@ -1,0 +1,45 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Documents\\Workspace\\Godot\\Type-1\\Type-1.csproj": {}
+  },
+  "projects": {
+    "D:\\Documents\\Workspace\\Godot\\Type-1\\Type-1.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Documents\\Workspace\\Godot\\Type-1\\Type-1.csproj",
+        "projectName": "Type-1",
+        "projectPath": "D:\\Documents\\Workspace\\Godot\\Type-1\\Type-1.csproj",
+        "packagesPath": "C:\\Users\\GGPC\\.nuget\\packages\\",
+        "outputPath": "D:\\Documents\\Workspace\\Godot\\Type-1\\.mono\\temp\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\GGPC\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "targetAlias": "net472",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "targetAlias": "net472",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
