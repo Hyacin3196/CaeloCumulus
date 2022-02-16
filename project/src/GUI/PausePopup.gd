@@ -18,27 +18,16 @@ func _ready():
 func _input(event):
 	if Input.is_action_just_pressed("pause"):
 		if paused:
-			#Unpause game
-			hide()
-			paused = false
-			get_tree().paused = false
-			_player.set_process_input(true)
-			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-			
+			unpause()
 		else:
-			pause()
+			popup_pause_menu()
 			
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
 		match selected_menu:
 			0:
 				pass
 			1:
-				#Unpause game
-				hide()
-				paused = false
-				get_tree().paused = false
-				_player.set_process_input(true)
-				Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+				unpause()
 			2:
 				#Restart
 				get_tree().paused = false
@@ -47,16 +36,30 @@ func _input(event):
 				#Quit
 				get_tree().notification(MainLoop.NOTIFICATION_WM_QUIT_REQUEST)
 
-func pause(): 
-	#reset selection
-	selected_menu = 0
-	reset_color()
+func unpause():
+	#Unpause game
+	hide()
+	paused = false
+	get_tree().paused = false
+	_player.set_process_input(true)
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+
+func pause():
 	#Pause game
 	popup()
 	paused = true
 	get_tree().paused = true
 	_player.set_process_input(false)
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+func popup_pause_menu(): 
+	reset_selection()
+	pause()
+
+func reset_selection():
+	#reset selection
+	selected_menu = 0
+	reset_color()
 
 func reset_color():
 	_continue.color = Color("9d0d1948")
