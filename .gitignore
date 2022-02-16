@@ -11,4 +11,7 @@ lib/
 *.csproj
 *.sln
 
+#Godot Mono project files
+.mono/
+
 export_presets.cfg
