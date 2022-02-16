@@ -72,25 +72,6 @@ func _process(delta : float):
 			
 			target_coord = Vector3(intersection[0].x, 0, intersection[0].z)
 		
-#		var angular_diff = atan2(
-#			self.global_transform.origin.x - target_coord.x, 
-#			self.global_transform.origin.z - target_coord.z 
-#			) - _parent.rotation.y - _previous_angle
-#
-#		angular_diff = fmod(angular_diff + PI, 2*PI) - PI
-#		if angular_diff > PI:
-#			angular_diff -= 2*PI
-#		elif angular_diff < -PI:
-#			angular_diff += 2*PI
-##
-#		angular_diff = clamp(angular_diff, -_max_rot_speed * delta, _max_rot_speed * delta)
-		
-		
-#		self.rotation = Vector3(0, angular_diff, 0)
-		
-#		_previous_angle = self.rotation.y;
-		#self.global_transform = Transform(Basis(Vector3(0,1,0), angular_diff + self.rotation.y), self.global_transform.origin) 
-		
 		
 		var target_angle = atan2(
 			self.global_transform.origin.x - target_coord.x, 
