@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://GFX/Meshes/Cursor_Mesh.tres" type="PrismMesh" id=1]
-[ext_resource path="res://Models/CursorPointer.tscn" type="PackedScene" id=2]
+[ext_resource path="res://project/assets/mesh/Cursor_Mesh.tres" type="PrismMesh" id=1]
+[ext_resource path="res://project/src/Misc/CursorPointer.tscn" type="PackedScene" id=2]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Spatial
