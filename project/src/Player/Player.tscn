@@ -53,9 +53,9 @@ _collision_mask = 14
 [node name="OmniTurret" parent="Weapons" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.00679, 1.19209e-07, 0.994589 )
 _active = false
-_shot_interval = 0.4
-_bullet_speed_max = 350.0
-_bullet_speed_min = 350.0
+_shot_interval = 0.175
+_bullet_speed_max = 150.0
+_bullet_speed_min = 150.0
 _bullet_range = 400.0
 _bullet_spread = 0.005
 _bullet_mass = 0.1
@@ -65,9 +65,9 @@ _collision_mask = 14
 [node name="OmniTurret2" parent="Weapons" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1 )
 _active = false
-_shot_interval = 0.4
-_bullet_speed_max = 350.0
-_bullet_speed_min = 350.0
+_shot_interval = 0.175
+_bullet_speed_max = 150.0
+_bullet_speed_min = 150.0
 _bullet_range = 400.0
 _bullet_spread = 0.005
 _bullet_mass = 0.1

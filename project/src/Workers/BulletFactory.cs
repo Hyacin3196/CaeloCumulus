@@ -32,6 +32,9 @@ public class BulletFactory : MultiMeshInstance
 	private List<int> _inactiveIndices = new List<int>();
 	private List<float> _timers = new List<float>();
 
+	private List<Bullet> _activeBullets;
+	private List<Bullet> _inactiveBullets;
+
 	private MultiMesh _multiMesh;
 	private Mesh _mesh;
 	private SpatialMaterial _material;
@@ -40,11 +43,9 @@ public class BulletFactory : MultiMeshInstance
 
 	private PhysicsDirectSpaceState _spaceState;
 	
-	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		
 		_colorFlipTime = _colorFlipInterval;
 		
 		File file = new File();
@@ -91,11 +92,12 @@ public class BulletFactory : MultiMeshInstance
 		_material.EmissionEnergy = 16f;
 		_material.EmissionOperator = SpatialMaterial.EmissionOperatorEnum.Add;
 		
-//		_mesh.SurfaceSetMaterial(0, _material);
 		_multiMesh.Mesh = _mesh;
 		
 		this.MaterialOverride = _material;
 		
+		_inactiveBullets = new List<Bullet>();
+		_activeBullets = new List<Bullet>();
 		
         for(int i = 0; i < _numOfBullets; i++)
         {
@@ -103,6 +105,10 @@ public class BulletFactory : MultiMeshInstance
 
             var xform = new Transform(Basis.Identity, new Vector3(0, 1000, 0)); 
             _multiMesh.SetInstanceTransform(i, xform);
+			
+			Bullet bullet = new Bullet();
+			bullet.Index = i;
+			_inactiveBullets.Add(bullet);
 		}
 	}
 	
@@ -137,17 +143,12 @@ public class BulletFactory : MultiMeshInstance
 			_material.Emission = _color;
 		}
 		List<int> indicesToBeRemoved = new List<int>();
-		for(int i = _activeBulletCount - 1; i >= 0; i--)
-		{
-			if(_timers[i] > 0)
-			{
-				Vector3 last_position = _positions[i];
-				_positions[i] = _positions[i] + _velocities[i] * delta;
+		for(int i = _activeBulletCount - 1; i >= 0; i--) {
+			Bullet bullet = _activeBullets[i];
+			if(bullet.LifeSpan > 0) {
+				bullet.PhysicsProcess(delta);
 				
-				Vector3 vel_off = _velocities[i].Normalized();
-				Godot.Collections.Dictionary body = null;
-				body = _spaceState.IntersectRay(last_position - vel_off, _positions[i] + vel_off, new Godot.Collections.Array(){}, _collisionMasks[i], true, true);
-				if(body.Count == 0) body = _spaceState.IntersectRay(_positions[i] + vel_off, last_position - vel_off, new Godot.Collections.Array(){}, _collisionMasks[i], true, true);
+				Godot.Collections.Dictionary body = bullet.FindIntersection(_spaceState);
 
 				if(body.Count != 0)
 				{
@@ -155,44 +156,26 @@ public class BulletFactory : MultiMeshInstance
 					{
 						// reflection Delta is the difference between the incident and reflected vector
 						Vector3 normal = (Vector3) body["normal"];
-						Vector3 reflectionDelta = (2 * _velocities[i].Dot(normal)) * normal;
+						Vector3 reflectionDelta = (2 * bullet.Velocity.Dot(normal)) * normal;
 						RigidBody rigidBody = body["collider"] as RigidBody;
 						Vector3 pos = (Vector3)body["position"] - rigidBody.Transform.origin;
-						rigidBody.ApplyImpulse(pos, reflectionDelta * _masses[i]);
+						rigidBody.ApplyImpulse(pos, reflectionDelta * bullet.Mass);
 					} 
 					indicesToBeRemoved.Add(i);
 				}
-
-				float phi = Mathf.Atan2(_velocities[i].z, -_velocities[i].x);
-				Transform xform = new Transform(new Basis(new Vector3(0, 1, 0), phi), _positions[i]);
-				_multiMesh.SetInstanceTransform(_activeIndices[i], xform);
-				_timers[i] -= delta;
-			}
-			else
-			{
+				
+				Transform xform = new Transform(bullet.Basis, bullet.Position);
+				_multiMesh.SetInstanceTransform(bullet.Index, xform);
+			} else {
 				indicesToBeRemoved.Add(i);
 			}
 		}
 
-		for(int i = 0; i < indicesToBeRemoved.Count; i++)
-		{
-			var index = indicesToBeRemoved[i];
-			Transform xform = new Transform(new Basis(new Vector3(0, 1, 0), 0), new Vector3(0, 1000, 0));
-			_multiMesh.SetInstanceTransform(_activeIndices[index], xform);
-			_inactiveIndices.Add(_activeIndices[index]);
-			_activeIndices.RemoveAt(index);
-			_timers.RemoveAt(index);
-			_positions.RemoveAt(index);
-			_velocities.RemoveAt(index);
-			_collisionMasks.RemoveAt(index);
-		}
-
-		// Update active bullet count
-		_activeBulletCount = _activeIndices.Count;
+		this.DeleteBullets(indicesToBeRemoved);
 
     }
 	
-	public void ShootBullet(String bulletType, Vector3 position, Vector3 velocity, float lifespan, int collisionMask, float mass)
+	public void ShootBullet(Vector3 position, Vector3 velocity, float lifespan, int collisionMask, float mass)
 	{
 		int index = _inactiveIndices[_inactiveIndices.Count-1];
 		_inactiveIndices.RemoveAt(_inactiveIndices.Count-1);
@@ -208,6 +191,34 @@ public class BulletFactory : MultiMeshInstance
 		Transform xform = new Transform(new Basis(new Vector3(0, 1, 0), phi), position);
 		_multiMesh.SetInstanceTransform(index, xform);
 
+	}
+	
+	public Bullet GetBullet(){
+		Bullet bullet = _inactiveBullets[0];
+		_inactiveBullets.RemoveAt(0);
+		return bullet;
+	}
+	
+	public void ShootBullet(Bullet bullet){
+		_activeBullets.Add(bullet);
+		_activeBulletCount = _activeBullets.Count;
+		_multiMesh.SetInstanceTransform(bullet.Index, bullet.GetTransform());
+	}
+	
+	public void DeleteBullet(int index){
+		Transform xform = new Transform(new Basis(), new Vector3(0, 1000, 0));
+		_multiMesh.SetInstanceTransform(_activeBullets[index].Index, xform);
+		_inactiveBullets.Add(_activeBullets[index]);
+		_activeBullets.RemoveAt(index);
+	}
+	
+	// bullet indices are in descending order
+	public void DeleteBullets(List<int> bulletIndices){
+		for(int i = 0; i < bulletIndices.Count; i++){
+			this.DeleteBullet(bulletIndices[i]);
+		}
+		
+		_activeBulletCount = _activeBullets.Count;
 	}
 	
 	public override void _Notification(int what)
