@@ -23,14 +23,6 @@ public class BulletFactory : MultiMeshInstance
 	private int _numOfBullets = 5000;
 
 	private int _activeBulletCount = 0;
-	private List<Vector3> _positions = new List<Vector3>();
-	private List<Vector3> _velocities = new List<Vector3>();
-	private List<uint> _collisionMasks = new List<uint>();
-	private List<float> _masses = new List<float>();
-
-	private List<int> _activeIndices = new List<int>();
-	private List<int> _inactiveIndices = new List<int>();
-	private List<float> _timers = new List<float>();
 
 	private List<Bullet> _activeBullets;
 	private List<Bullet> _inactiveBullets;
@@ -66,27 +58,20 @@ public class BulletFactory : MultiMeshInstance
 		
 		_spaceState = GetWorld().DirectSpaceState;
 		
-//		_multiMesh = this.Multimesh;
 		_multiMesh = new MultiMesh();
 		this.Multimesh = _multiMesh;
 
-		// Create the multimesh.
-		// Set the format first.
 		_multiMesh.TransformFormat = MultiMesh.TransformFormatEnum.Transform3d;
 		_multiMesh.ColorFormat = MultiMesh.ColorFormatEnum.Float;
 		_multiMesh.CustomDataFormat = MultiMesh.CustomDataFormatEnum.None;
 		
-		// Then resize (otherwise, changing the format is not allowed).
 		_multiMesh.InstanceCount = _numOfBullets;
-		
-		// Maybe not all of them should be visible at first.
 //		_multiMesh.VisibleInstanceCount = _numOfBullets;
 		
 		_mesh = GD.Load("res://project//assets//mesh//wave_bullet.obj") as Mesh;
 		_material = new SpatialMaterial();
 		_material.VertexColorUseAsAlbedo = true;
 		_material.AlbedoColor = _color;
-//		_material.FlagsUnshaded = true;
 		_material.EmissionEnabled = true;
 		_material.Emission = _color;
 		_material.EmissionEnergy = 16f;
@@ -101,7 +86,6 @@ public class BulletFactory : MultiMeshInstance
 		
         for(int i = 0; i < _numOfBullets; i++)
         {
-			_inactiveIndices.Add(i);
 
             var xform = new Transform(Basis.Identity, new Vector3(0, 1000, 0)); 
             _multiMesh.SetInstanceTransform(i, xform);
@@ -175,23 +159,6 @@ public class BulletFactory : MultiMeshInstance
 
     }
 	
-	public void ShootBullet(Vector3 position, Vector3 velocity, float lifespan, int collisionMask, float mass)
-	{
-		int index = _inactiveIndices[_inactiveIndices.Count-1];
-		_inactiveIndices.RemoveAt(_inactiveIndices.Count-1);
-		_activeIndices.Add(index);
-		_timers.Add(lifespan);
-		_positions.Add(position);
-		_velocities.Add(velocity);
-		_collisionMasks.Add(Convert.ToUInt32(collisionMask));
-		_masses.Add(mass);
-		_activeBulletCount = _activeIndices.Count;
-
-		float phi = Mathf.Atan2(velocity.z, -velocity.x);
-		Transform xform = new Transform(new Basis(new Vector3(0, 1, 0), phi), position);
-		_multiMesh.SetInstanceTransform(index, xform);
-
-	}
 	
 	public Bullet GetBullet(){
 		Bullet bullet = _inactiveBullets[0];
